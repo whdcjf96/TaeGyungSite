@@ -28,7 +28,7 @@ public class Criteria {
 
 //    페이지당 출력할 데이터 개수
 //    ex)1page 당 10건
-    private int recordPerPage;
+    private int recordsPerPage;
 
 //    화면 하단에 출력할 페이지 사이즈
 //    ex) <<1,2,3,4,5,6,7,8,9>>
@@ -43,7 +43,7 @@ public class Criteria {
 //    기본 생성자 : 페이지 초기화
     public Criteria(){
         this.currentPageNo=1; // 현재 페이지 1
-        this.recordPerPage=10; // 1페이지 당 10건
+        this.recordsPerPage=10; // 1페이지 당 10건
         this.pageSize = 10; // 총페이지 10
     }
 
@@ -54,7 +54,7 @@ public class Criteria {
     public String makeQueryString(int pageNo){
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .queryParam("currentPageNo", pageNo)
-                .queryParam("recordsPerPage", recordPerPage)
+                .queryParam("recordsPerPage", recordsPerPage)
                 .queryParam("pageSize", pageSize)
                 .queryParam("searchType", searchType)
                 .queryParam("searchKeyword", searchKeyword)

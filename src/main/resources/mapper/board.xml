@@ -72,19 +72,31 @@
     </update>
     <select id="selectBoardList" parameterType="com.example.taegyungsite.model.BoardDto"
             resultType="com.example.taegyungsite.model.BoardDto">
-<![CDATA[
+<!--<![CDATA[-->
+<!--        SELECT * FROM-->
+<!--        (-->
+<!--        SELECT ROWNUM R, TBB.*-->
+<!--        FROM TB_BOARD TBB-->
+<!--        WHERE ROWNUM <=#{currentPageNo} * #{recordsPerPage}-->
+<!--        AND DELETE_YN ='N'-->
+<!--        ORDER BY-->
+<!--            NOTICE_YN ASC,-->
+<!--            IDX DESC,-->
+<!--            INSERT_TIME DESC)-->
+<!--        WHERE R > (#{currentPageNo}-1) * #{recordsPerPage}-->
+<!--]]>-->
         SELECT * FROM
         (
         SELECT ROWNUM R, TBB.*
         FROM TB_BOARD TBB
-        WHERE ROWNUM <=#{currentPageNo} * #{recordsPerPage}
+        WHERE ROWNUM &lt;= #{currentPageNo} * #{recordsPerPage}
         AND DELETE_YN ='N'
         ORDER BY
-            NOTICE_YN ASC,
-            IDX DESC,
-            INSERT_TIME DESC)
-        WHERE R > (#{currentPageNo}-1) * #{recordsPerPage};
-]]>
+        NOTICE_YN ASC,
+        IDX DESC,
+        INSERT_TIME DESC)
+        WHERE R &gt; (#{currentPageNo}-1) * #{recordsPerPage}
+        <include refid="Common.search"></include>
     </select>
 </mapper>
 

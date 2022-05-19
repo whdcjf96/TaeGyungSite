@@ -60,4 +60,11 @@ public class BoardApiController {
 
         return boardService.getBoardList(params);
     }
+
+//
+    @GetMapping("/board/list/cpage/{currentPageNo}/rpage/{recordsPerPage}/sword/{searchKeyword}/stype/{searchType}")
+    public List<BoardDto> openBoardList2(BoardDto params){
+
+        return boardService.getBoardList(params);
+    }
 }
